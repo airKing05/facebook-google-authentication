@@ -1,37 +1,30 @@
 const express = require('express');
-const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const keys = require('./config/keys');
-
 const app = express();
+const keys = require('./config/keys');
+const cookieSession = require('cookie-session');
+const passport = require('passport');
+
+require('./models/User');
+require('./services/passport');
+
+require('./conaction/conact');
+
+app.use(cookieSession({
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    keys: [keys.cookiesKEY]
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+require('./routes/authRoute')(app);
 
 const PORT = process.env.PORT || 9000
 
 app.get('/', (req, res) =>{
     res.send('hi google auth')
 });
-
-// google authentication 
-
-passport.use(
-    new GoogleStrategy({
-        clientID: keys.googleClientID,
-        clientSecret: keys.googleClientSecret,
-        callbackURL: `/auth/google/callback`
-    },
-    (accessToken, refreshToken, profile, done) => {
-        console.log("accessToken", accessToken)
-        console.log("refreshToken", refreshToken)
-        console.log("profile", profile)
-        console.log("done", done)
-    }  
-    )
-);
-
-app.get('/auth/google', passport.authenticate('google', {
-    scope: ['profile', 'email']
-}))
-app.get('/auth/google/callback', passport.authenticate('google'))
 
 app.listen(PORT, ()=> {
     console.log(`server is running on port ${9000}`)
