@@ -11,7 +11,7 @@ app.get('/auth/google/callback', passport.authenticate('google'));
 
 
 // accessing the user from the cookies
-app.get('/current-user', (req, res) =>{
+app.get('/api/current-user', (req, res) =>{
     res.send(req.user)
 });
 
