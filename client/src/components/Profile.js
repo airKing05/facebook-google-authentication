@@ -12,12 +12,14 @@ function Profile(props) {
     });
 
     useEffect(() => {
+       if(props.user){
         setUserData({
             userName: props.user.userName,
             userImg: props.user.userImg,
             userEmail: props.user.userEmail,
             userSex: props.user.userSex
         })
+       }
     }, [])
 
     return (
