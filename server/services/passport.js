@@ -26,6 +26,7 @@ passport.use(
         callbackURL: `/auth/google/callback`
     },
     (accessToken, refreshToken, profile, done) => {
+        console.log(profile)
         User.findOne({googleId: profile.id})
         .then((isExist) => {
              if (isExist){
@@ -33,7 +34,14 @@ passport.use(
                   done(null, isExist)
              }
              else{
-                new User({googleId: profile.id}).save()
+                new User({
+                    googleId: profile.id,
+                    userName: profile._json.name,
+                    userImg: profile._json.picture,
+                    userSex: profile._json.gender,
+                    userEmail: profile._json.email
+                    
+                }).save()
                 .then((user) => {
                     done(null, user)
                 })
