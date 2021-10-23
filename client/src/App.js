@@ -10,7 +10,7 @@ import {fetchDataAction} from './redux/actions/fetchDataAction';
 function App(props) {
   useEffect(() => {
     props.fetch_user()
-  })
+  },[])
   return (
     <BrowserRouter className="App ">
      <Header/>

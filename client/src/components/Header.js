@@ -1,5 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import {Link} from 'react-router-dom';
 
 function Header(props) {
     const renderContect = () => {
@@ -11,7 +12,7 @@ function Header(props) {
             default:
                 return (
                     <React.Fragment>
-                        <a className="nav-link" href="/profile">Profile</a>
+                        <Link className="nav-link" to="/profile">Profile</Link>
                         <a className="nav-link" href="/api/logout">LogOut</a>
                     </React.Fragment>
                 )
@@ -20,13 +21,13 @@ function Header(props) {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-danger ">
             <div className="container-fluid">
-                <a className="navbar-brand" href="/">Facebook Google Auth</a>
+                <Link className="navbar-brand" to={props.user ? '/profile' : '/'}>Facebook Google Auth</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse ml-auto" id="navbarNavAltMarkup">
                     <div className="navbar-nav ">
-                        <a className="nav-link active" aria-current="page" href="/">Home</a>
+                        <Link className="nav-link active" aria-current="page" to={props.user ? '/profile' : '/'}>Home</Link>
                         {
                             renderContect()
                         }
