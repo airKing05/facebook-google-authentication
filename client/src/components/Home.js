@@ -14,7 +14,7 @@ function Home(props) {
                         <div className=" py-4 my-5 text-center" style={{ boxShadow: ' 5px 5px 8px #000' }}>
                             <div className="my-5 d-flex justify-content-around">
                                 <button className="btn btn-danger" onClick={() => history.push('/auth/google')}>SignUp With Google</button>
-                                <button className="btn btn-primary">SignUp With Facebook</button>
+                                <a href="/auth/facebook" className="btn btn-primary">SignUp With Facebook</a>
                             </div>
                         </div>
                     </div>

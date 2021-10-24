@@ -33,7 +33,7 @@ function Profile(props) {
                             <img src={userData.userImg} className="img-fluid img-thumbnail"  alt="user-image" style={{width:'250px'}}/>
                         </div>
                         <div className="col-9 ">
-                            <h3 className="d-flex justify-content-start">{props.user.googleId}</h3>
+                            <h3 className="d-flex justify-content-start">{props.user.userId}</h3>
                             <h2 className="d-flex justify-content-start">{userData.userName}</h2>
                             <h3 className="d-flex justify-content-start">{userData.userEmail}</h3>
                             <h4 className="d-flex justify-content-start" style={{textTransform: ' capitalize'}}> <strong>Gender: </strong> &nbsp; {userData.userSex}</h4>
